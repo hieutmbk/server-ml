@@ -17,7 +17,7 @@ filename_tfidf = 'finalized_tfidftransformer.sav'
 clf_svm = joblib.load(sav_filename)
 loaded_cvec = joblib.load(filename_countvect)
 loaded_tfidf_transformer = joblib.load(filename_tfidf)
-model = Pipeline([
+pipe_line = Pipeline([
     ("transformer", FeatureTransformer()),
     ("vect", loaded_cvec),
     ("tfidf", loaded_tfidf_transformer),
@@ -26,7 +26,8 @@ model = Pipeline([
 
 @app.route('/')
 def home():
-    return 'It works.'
+
+    return 'it works'
 
 
 def predict(model, text):
@@ -46,12 +47,12 @@ def extract():
         description = request.args['str']
         result = {
             'args' : description,
-            'sentiment': predict(model, description)
+            'sentiment': predict(pipe_line, description)
         }
         return json.dumps(result) 
 
 
 if __name__ == '__main__':
 
-    app.run(host='0.0.0.0', port=PORT)
+    app.run()
 

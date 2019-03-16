@@ -12,15 +12,6 @@ class FeatureTransformer(BaseEstimator, TransformerMixin) :
     def transform(self,X,y=None,**fit_params):
         result = []
         for i in X :
-            vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(i))
-
-            words = []
-            for word in vitoken[0] :
-                with open('stopwords.txt', encoding="utf-8") as f1:
-                    if word not in f1.read():
-                        words.append(word)
-            str = ' '.join(words)
-
-            result.append(str)
+            result.append(self.tokenizer.tokenize(i))
 
         return result
