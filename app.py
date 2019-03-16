@@ -26,7 +26,6 @@ pipe_line = Pipeline([
 
 @app.route('/')
 def home():
-
     return 'it works'
 
 
@@ -53,6 +52,5 @@ def extract():
 
 
 if __name__ == '__main__':
-
     app.run()
 
