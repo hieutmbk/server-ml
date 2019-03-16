@@ -24,8 +24,6 @@ model = Pipeline([
     ("clf-svm", clf_svm)
 ])
 
-
-
 @app.route('/')
 def home():
     return 'It works.'
@@ -35,8 +33,8 @@ def predict(model, text):
     return model.predict([text])[0]
 
 
-@app.route('/predict/<text_arg>', methods=['GET'])
-def extract(text_arg):
+@app.route('/predict', methods=['GET'])
+def extract():
     """Return the movie review sentiment score.
     
     Returns a JSON object :
@@ -45,9 +43,9 @@ def extract(text_arg):
     }
     """
     if request.method == 'GET':
-        description = text_arg
+        description = request.args['str']
         result = {
-            'args' : text_arg,
+            'args' : description,
             'sentiment': predict(model, description)
         }
         return json.dumps(result) 
