@@ -44,7 +44,7 @@ def extract():
     """
     if request.method == 'GET':
         description = request.args['str']
-        print(description)
+
         result = {
             'predict': predict(pipe_line, description),
             'ner' : ner(description)
