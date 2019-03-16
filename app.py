@@ -37,9 +37,9 @@ def extract():
     }
     """
     if request.method == 'GET':
-        description = request.args.get('text', '')
+        description = request.args.get('text', 'bad')
         result = {
-            'args' : request.args.get('text', '')   ,
+            'args' : request.args.get('text', 'bad')   ,
             'sentiment': predict(model, description)
         }
         return json.dumps(result) 
