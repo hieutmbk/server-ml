@@ -1,21 +1,29 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request
-
+from sklearn.pipeline import Pipeline
+from feature_transformer import FeatureTransformer
 import json
-import logging
-import os
 
 from sklearn.externals import joblib
-
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-MODEL = os.path.join(APP_ROOT, 'classifier.pkl')
 
 PORT = 5000
 
 app = Flask(__name__)
-logging.basicConfig(filename='movie_classifier.log', level=logging.DEBUG)
-model = joblib.load(MODEL)
-label = {0:'negative', 1:'positive'}
+
+sav_filename = 'svm_model.sav'
+filename_countvect = 'finalized_countvectorizer.sav'
+filename_tfidf = 'finalized_tfidftransformer.sav'
+
+clf_svm = joblib.load(sav_filename)
+loaded_cvec = joblib.load(filename_countvect)
+loaded_tfidf_transformer = joblib.load(filename_tfidf)
+model = Pipeline([
+    ("transformer", FeatureTransformer()),
+    ("vect", loaded_cvec),
+    ("tfidf", loaded_tfidf_transformer),
+    ("clf-svm", clf_svm)
+])
+
 
 
 @app.route('/')
@@ -24,10 +32,10 @@ def home():
 
 
 def predict(model, text):
-    return label[model.predict([text])[0]]
+    return model.predict([text])[0]
 
 
-@app.route('/review/<text_arg>', methods=['GET'])
+@app.route('/predict/<text_arg>', methods=['GET'])
 def extract(text_arg):
     """Return the movie review sentiment score.
     
@@ -39,7 +47,7 @@ def extract(text_arg):
     if request.method == 'GET':
         description = text_arg
         result = {
-            'args' : text_arg   ,
+            'args' : text_arg,
             'sentiment': predict(model, description)
         }
         return json.dumps(result) 
