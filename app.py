@@ -3,7 +3,7 @@ from flask import Flask, request
 from sklearn.pipeline import Pipeline
 from feature_transformer import FeatureTransformer
 import json
-
+from underthesea import ner
 from sklearn.externals import joblib
 
 PORT = 5000
@@ -44,9 +44,10 @@ def extract():
     """
     if request.method == 'GET':
         description = request.args['str']
+        print(description)
         result = {
-            'args' : description,
-            'sentiment': predict(pipe_line, description)
+            'predict': predict(pipe_line, description),
+            'ner' : ner(description)
         }
         return json.dumps(result) 
 
