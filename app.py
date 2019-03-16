@@ -27,8 +27,8 @@ def predict(model, text):
     return label[model.predict([text])[0]]
 
 
-@app.route('/review', methods=['GET'])
-def extract():
+@app.route('/review/<text_arg>', methods=['GET'])
+def extract(text_arg):
     """Return the movie review sentiment score.
     
     Returns a JSON object :
@@ -37,9 +37,9 @@ def extract():
     }
     """
     if request.method == 'GET':
-        description = request.args.get('text', 'bad')
+        description = text_arg
         result = {
-            'args' : request.args.get('text', 'bad')   ,
+            'args' : text_arg   ,
             'sentiment': predict(model, description)
         }
         return json.dumps(result) 
