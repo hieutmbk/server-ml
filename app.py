@@ -5,7 +5,7 @@ from feature_transformer import FeatureTransformer
 import json
 from underthesea import ner
 from sklearn.externals import joblib
-
+import base64
 PORT = 5000
 
 app = Flask(__name__)
@@ -28,10 +28,12 @@ pipe_line = Pipeline([
 def home():
     return 'it works'
 
-
+item = "t\u1eeb ng\u00e1ch ph\u1ed1 H\u1ed3ng Mai"
+print(base64.b64decode(item).decode("utf-8"))
 def predict(model, text):
     return model.predict([text])[0]
-
+def ner_tag(str) :
+    return ner(str)
 
 @app.route('/predict', methods=['GET'])
 def extract():
@@ -43,11 +45,10 @@ def extract():
     }
     """
     if request.method == 'GET':
-        description = request.args['str']
-
+        str = request.args['str']
         result = {
-            'predict': predict(pipe_line, description),
-            'ner' : ner(description)
+            'predict': predict(pipe_line, str),
+            'ner' : ner_tag(str.encode('utf-8'))
         }
         return json.dumps(result) 
 
