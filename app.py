@@ -45,7 +45,7 @@ def extract():
     if request.method == 'GET':
         str = request.args['str']
         result = {
-            'str' : str.encode('utf-8'),
+            'str' : str,
             'predict': predict(pipe_line, str),
             'ner' : ner_tag(str.encode('utf-8'))
         }
