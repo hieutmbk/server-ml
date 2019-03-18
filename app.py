@@ -28,8 +28,6 @@ pipe_line = Pipeline([
 def home():
     return 'it works'
 
-item = "t\u1eeb ng\u00e1ch ph\u1ed1 H\u1ed3ng Mai"
-print(base64.b64decode(item).decode("utf-8"))
 def predict(model, text):
     return model.predict([text])[0]
 def ner_tag(str) :
