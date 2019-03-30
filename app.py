@@ -5,8 +5,6 @@ from feature_transformer import FeatureTransformer
 import json
 from underthesea import ner
 from sklearn.externals import joblib
-from crawl_wiki_summary import MySpider
-from scrapy.crawler import CrawlerProcess
 import wikipedia
 
 wikipedia.set_lang("vi")
@@ -43,32 +41,32 @@ def extract():
     if request.method == 'GET':
         str = request.args['str']
         ner_word = ner(str)
-        word_search = ""
+        search_word = ""
+        qa_word = ""
         for i in range(len(ner_word)):
-
             if (ner_word[i][3] in ["B-PER","I-LOC", "I-PER","B-LOC"]):
-                word_search = word_search + ner_word[i][0] + " ";
-        word_search.strip()
+                search_word = search_word + ner_word[i][0] + " ";
 
-        wiki = wikipedia.page(word_search)
-        process = CrawlerProcess({
-            'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
-        })
-        process.crawl(MySpider, myurls=[
-            wiki.url
-        ])
-        process.start()
+            if(ner_word[i][1]=='N'):
+                first_word = ner_word[i][0][0]
+                if(first_word.isupper()):
 
-        with open('data.json', 'r') as f:
-            datastore = json.load(f)
+                    search_word = search_word + ner_word[i][0] + " ";
+                else:
+                    qa_word = qa_word + ner_word[i][0] + " ";
 
+        search_word.strip()
+        qa_word.strip()
+        wiki = wikipedia.page(search_word)
         result = {
             'str' : str,
             'predict': predict(pipe_line, str),
             'ner' : ner_tag(str.encode('utf-8')),
+            'url_wiki' : wiki.url,
+            'qa_word' : qa_word,
             'summary' : wiki.summary,
-            'infor' : datastore
         }
+        print(result)
         return json.dumps(result) 
 
 
