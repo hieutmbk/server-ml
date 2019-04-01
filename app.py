@@ -47,7 +47,7 @@ def extract():
             if (ner_word[i][3] in ["B-PER","I-LOC", "I-PER","B-LOC"]):
                 search_word = search_word + ner_word[i][0] + " ";
 
-            if(ner_word[i][1]=='N' | ner_word[i][1]=='V'):
+            if((ner_word[i][1]=='N') | (ner_word[i][1]=='V')):
                 first_word = ner_word[i][0][0]
                 if(first_word.isupper()):
 
@@ -57,9 +57,9 @@ def extract():
 
         search_word.strip()
         qa_word.strip()
-        wiki = wikipedia.page(search_word)
-        if (predict(pipe_line, str) in ["person","organization"]):
 
+        if (predict(pipe_line, str) in ["person","organization"]):
+            wiki = wikipedia.page(search_word)
             result = {
                 'str' : str,
                 'predict': predict(pipe_line, str),
