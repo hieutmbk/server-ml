@@ -54,11 +54,11 @@ def extract():
                     if(ner_word[i][0] == "Quê" ):
                         qa_word = qa_word + ner_word[i][0] + " ";
                     search_word = search_word + ner_word[i][0] + " ";
-				elif (ner_word[i][1] == 'A'):
-					qa_word = qa_word + ner_word[i][0] + " ";
+
                 else:
                     qa_word = qa_word + ner_word[i][0] + " ";
-
+            if ((ner_word[i][1] == 'A') & (ner_word[i][3] == 'O')):
+                qa_word = qa_word + ner_word[i][0] + " ";
         search_word.strip()
         print(search_word)
         qa_word.strip()
