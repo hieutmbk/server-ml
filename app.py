@@ -41,6 +41,7 @@ def extract():
     if request.method == 'GET':
         str = request.args['str']
         ner_word = ner(str)
+        print(ner_word)
         search_word = ""
         qa_word = ""
         for i in range(len(ner_word)):
@@ -54,10 +55,10 @@ def extract():
                         qa_word = qa_word + ner_word[i][0] + " ";
                     search_word = search_word + ner_word[i][0] + " ";
                 else:
-
                     qa_word = qa_word + ner_word[i][0] + " ";
 
         search_word.strip()
+        print(search_word)
         qa_word.strip()
 
         if (predict(pipe_line, str) in ["person","organization"]):
