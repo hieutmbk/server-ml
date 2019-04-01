@@ -2,67 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1875bf9b-a724-43fc-9b5d-6e0f0eca3ff5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/ner.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/VERSION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/chunking/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/chunking/model.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/chunking/model_crf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/chunking/tagged_feature.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/classification/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/classification/bank/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/classification/bank/label.transformer.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/classification/bank/model.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/classification/bank/tfidf.transformer.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/classification/model_fasttext.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/cli.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/corpus.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/data/Viet11K.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/data/Viet22K.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/data/Viet39K.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/data/Viet74K.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/document.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/plaintext.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/readers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/readers/dictionary_loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/corpus/ws.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/dictionary/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/dictionary/dictionary.data" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/feature_engineering/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/feature_engineering/feature.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/feature_engineering/lowercase.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/feature_engineering/text.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/feature_engineering/unicode.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/ner/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/ner/model.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/ner/model_crf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/ner/tagged_feature.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/pos_tag/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/pos_tag/model.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/pos_tag/model_crf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/pos_tag/tagged_feature.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/sent_tokenize/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/sent_tokenize/sent_tokenize_model_v1.0.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/sentiment/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/sentiment/bank/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/sentiment/bank/count.transformer.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/sentiment/bank/label.transformer.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/sentiment/bank/model.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/util/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/util/data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/util/file_io.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/util/singleton.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/word_tokenize/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/word_tokenize/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/word_tokenize/model_vlsp2013.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underthesea/word_tokenize/regex_tokenize.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawl_wiki_summary.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/finalized_countvectorizer.sav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/finalized_tfidftransformer.sav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/svm_model.sav" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,32 +14,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="66" column="37" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
+            <state relative-caret-position="449">
+              <caret line="78" column="37" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ner.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ner.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -122,8 +45,8 @@
         <option value="$PROJECT_DIR$/bin/crawl_wiki_summary.py" />
         <option value="$PROJECT_DIR$/crawl_wiki_summary.py" />
         <option value="$PROJECT_DIR$/ner.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -138,6 +61,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -149,7 +73,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,8 +208,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26136363" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26136363" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -299,12 +221,43 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="55" column="61" selection-start-line="55" selection-start-column="61" selection-end-line="55" selection-end-column="61" />
+          <folding>
+            <element signature="e#24#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <folding>
+            <element signature="e#24#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <folding>
+            <element signature="e#24#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -315,16 +268,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py" />
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -339,16 +283,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py" />
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -363,16 +298,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py" />
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -451,37 +377,22 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/crawlwiki.py" />
-    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="66" column="37" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
-          <folding>
-            <element signature="e#24#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl_wiki_summary.py" />
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ner.py" />
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="78" column="37" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
+          <folding>
+            <element signature="e#24#56#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -47,7 +47,7 @@ def extract():
             if (ner_word[i][3] in ["B-PER","I-LOC", "I-PER","B-LOC"]):
                 search_word = search_word + ner_word[i][0] + " ";
 
-            if(ner_word[i][1]=='N'):
+            if(ner_word[i][1]=='N' | ner_word[i][1]=='V'):
                 first_word = ner_word[i][0][0]
                 if(first_word.isupper()):
 
@@ -58,17 +58,25 @@ def extract():
         search_word.strip()
         qa_word.strip()
         wiki = wikipedia.page(search_word)
-        result = {
-            'str' : str,
-            'predict': predict(pipe_line, str),
-            'ner' : ner_tag(str.encode('utf-8')),
-            'url_wiki' : wiki.url,
-            'qa_word' : qa_word,
-            'summary' : wiki.summary,
-        }
-        print(result)
-        return json.dumps(result) 
+        if (predict(pipe_line, str) in ["person","organization"]):
 
+            result = {
+                'str' : str,
+                'predict': predict(pipe_line, str),
+                'ner' : ner_tag(str.encode('utf-8')),
+                'url_wiki' : wiki.url,
+                'qa_word' : qa_word,
+                'summary' : wiki.summary,
+            }
+
+            return json.dumps(result)
+        else :
+            result = {
+                'str': str,
+                'predict': predict(pipe_line, str),
+                'ner': ner_tag(str.encode('utf-8'))
+            }
+            return json.dumps(result)
 
 if __name__ == '__main__':
     app.run()
