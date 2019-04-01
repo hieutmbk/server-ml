@@ -51,9 +51,11 @@ def extract():
             if( ( (ner_word[i][1]=='N') & (ner_word[i][3]=='O') ) | (ner_word[i][1]=='V')):
                 first_word = ner_word[i][0][0]
                 if(first_word.isupper()):
-                    if((ner_word[i][0] == "Quê") | (ner_word[i][1] == "A")):
+                    if(ner_word[i][0] == "Quê" ):
                         qa_word = qa_word + ner_word[i][0] + " ";
                     search_word = search_word + ner_word[i][0] + " ";
+				if (ner_word[i][1] == "A"):
+					qa_word = qa_word + ner_word[i][0] + " ";
                 else:
                     qa_word = qa_word + ner_word[i][0] + " ";
 
