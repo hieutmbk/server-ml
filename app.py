@@ -72,6 +72,7 @@ def extract():
                 'url_wiki' : wiki.url,
                 'qa_word' : qa_word,
                 'summary' : wiki.summary,
+
             }
 
             return json.dumps(result)
