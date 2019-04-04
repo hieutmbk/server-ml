@@ -52,8 +52,10 @@ def extract():
                 first_word = ner_word[i][0][0]
                 if(first_word.isupper()):
                     if( (ner_word[i][0] == "Quê") | (ner_word[i][0] == "GDP") ):
+                        
                         qa_word = qa_word + ner_word[i][0] + " ";
-                    search_word = search_word + ner_word[i][0] + " ";
+                    else:
+                        search_word = search_word + ner_word[i][0] + " ";
 
                 else:
                     qa_word = qa_word + ner_word[i][0] + " ";
