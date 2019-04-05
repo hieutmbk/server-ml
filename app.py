@@ -45,14 +45,14 @@ def extract():
         search_word = ""
         qa_word = ""
         for i in range(len(ner_word)):
-            if (ner_word[i][3] in ["B-PER","I-LOC", "I-PER","B-LOC"]):
+            if (ner_word[i][3] in ["B-PER","I-LOC", "I-PER","B-LOC","B-ORG"]):
                 search_word = search_word + ner_word[i][0] + " ";
 
             if( ( (ner_word[i][1]=='N') & (ner_word[i][3]=='O') ) | ( (ner_word[i][1]=='V') & (ner_word[i][0] != 'là') ) ):
                 first_word = ner_word[i][0][0]
                 if(first_word.isupper()):
                     if( (ner_word[i][0] == "Quê") | (ner_word[i][0] == "GDP") ):
-                        
+
                         qa_word = qa_word + ner_word[i][0] + " ";
                     else:
                         search_word = search_word + ner_word[i][0] + " ";
