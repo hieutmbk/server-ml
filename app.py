@@ -3,7 +3,7 @@ from flask import Flask, request
 from sklearn.pipeline import Pipeline
 from feature_transformer import FeatureTransformer
 import json
-from underthesea import ner
+from underthesea import ner,word_tokenize
 from sklearn.externals import joblib
 import wikipedia
 
@@ -40,6 +40,7 @@ def extract():
 
     if request.method == 'GET':
         str = request.args['str']
+        print(str)
         ner_word = ner(str)
         print(ner_word)
         search_word = ""
@@ -48,7 +49,7 @@ def extract():
             if (ner_word[i][3] in ["B-PER","I-LOC", "I-PER","B-LOC","B-ORG"]):
                 search_word = search_word + ner_word[i][0] + " ";
 
-            if( ( (ner_word[i][1]=='N') & (ner_word[i][3]=='O') ) | ( (ner_word[i][1]=='V') & (ner_word[i][0] != 'là') ) ):
+            if( ( (ner_word[i][1]=='N') & (ner_word[i][3]=='O') ) | ( (ner_word[i][1]=='V') & (ner_word[i][0] != 'là') )):
                 first_word = ner_word[i][0][0]
                 if(first_word.isupper()):
                     if( (ner_word[i][0] == "Quê") | (ner_word[i][0] == "GDP") ):
