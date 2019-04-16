@@ -127,10 +127,10 @@ def extract():
             for i in x:
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
-            print(tags)
+
             for i in range(len(ner_tags)):
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
-
+            print(ner_tags)
             for tag in ner_tags:
                 if(tag[2] in ["B-PER","I-PER"]):
                     search_word = search_word + tag[0] + " ";
@@ -141,7 +141,8 @@ def extract():
             search_word=search_word.replace("_sinh","")
             print(search_word)
             qa_word.strip()
-            wiki = wikipedia.page(search_word)
+
+            wiki = wikipedia.page(wikipedia.search(search_word)[0])
             result = {
                 'str' : str,
                 'predict': predict(pipe_line, str),
@@ -153,6 +154,7 @@ def extract():
             }
 
             return json.dumps(result)
+
         elif (predict(pipe_line, str) == "organization"):
             crf = pickle.load(open("model_ner/ner_organization_model.pkl", 'rb'))
             search_word = ""
@@ -174,14 +176,14 @@ def extract():
             search_word.strip().replace("_"," ")
             print(search_word)
             qa_word.strip().replace("_"," ")
-            wiki = wikipedia.page(search_word)
+            wiki = wikipedia.page(wikipedia.search(search_word)[0])
             result = {
-                'str' : str,
+                'str': str,
                 'predict': predict(pipe_line, str),
-                'ner' : ner_tags,
-                'url_wiki' : wiki.url,
-                'qa_word' : qa_word,
-                'summary' : wiki.summary,
+                'ner': ner_tags,
+                'url_wiki': wiki.url,
+                'qa_word': qa_word,
+                'summary': wiki.summary,
 
             }
 
@@ -273,6 +275,14 @@ def extract():
                 'predict': predict(pipe_line, str),
                 'word_ner': word_ner,
                 'location': locaion
+
+            }
+
+            return json.dumps(result)
+        elif (predict(pipe_line, str) == "time"):
+            result = {
+                'str': str,
+                'predict': predict(pipe_line, str),
 
             }
 
