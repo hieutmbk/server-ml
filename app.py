@@ -137,10 +137,10 @@ def extract():
                 if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | (tag[1] == 'M') | (tag[1] == 'A')):
                     qa_word = qa_word + tag[0] + " ";
 
-            search_word.strip()
+            search_word.strip().replace("_"," ")
             search_word=search_word.replace("_sinh","")
             print(search_word)
-            qa_word.strip()
+            qa_word.strip().replace("_"," ")
             wiki = wikipedia.page(search_word)
             result = {
                 'str' : str,
@@ -171,9 +171,9 @@ def extract():
                 if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | (tag[1] == 'M') | (tag[1] == 'A')):
                     qa_word = qa_word + tag[0] + " ";
 
-            search_word.strip()
+            search_word.strip().replace("_"," ")
             print(search_word)
-            qa_word.strip()
+            qa_word.strip().replace("_"," ")
             wiki = wikipedia.page(search_word)
             result = {
                 'str' : str,
@@ -200,7 +200,7 @@ def extract():
             for tag in ner_tags:
                 if (tag[2] in ["B-NEWS", "I-NEWS"]):
                     word_ner = word_ner+ tag[0]+" ";
-            word_ner.strip()
+            word_ner.strip().replace("_"," ")
             result = {
                 'str': str,
                 'predict': predict(pipe_line, str),
@@ -221,7 +221,7 @@ def extract():
             for tag in ner_tags:
                 if (tag[2] in ["B-NEWS", "I-NEWS"]):
                     word_ner = word_ner + +tag[0] + " ";
-            word_ner.strip()
+            word_ner.strip().replace("_"," ")
             result = {
                 'str': str,
                 'predict': predict(pipe_line, str),
@@ -242,7 +242,7 @@ def extract():
             for tag in ner_tags:
                 if (tag[2] in ["B-PLACE", "I-PLACE","B-LOC","I-LOC"]):
                     word_ner = word_ner + tag[0] + " ";
-            word_ner.strip()
+            word_ner.strip().replace("_"," ")
             result = {
                 'str': str,
                 'predict': predict(pipe_line, str),
@@ -266,8 +266,8 @@ def extract():
                     word_ner = word_ner + tag[0] + " ";
                 if (tag[2] in ["B-LOC","I-LOC"]):
                     locaion = locaion + tag[0] + " ";
-            word_ner.strip()
-            locaion.strip()
+            word_ner.strip().replace("_"," ")
+            locaion.strip().replace("_"," ")
             result = {
                 'str': str,
                 'predict': predict(pipe_line, str),
