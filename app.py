@@ -3,6 +3,7 @@ from flask import Flask, request
 from sklearn.pipeline import Pipeline
 from feature_transformer import FeatureTransformer
 import json
+import random
 from underthesea import ner
 from sklearn.externals import joblib
 import pickle
@@ -117,7 +118,7 @@ def extract():
         # search_word.strip()
         # print(search_word)
         # qa_word.strip()
-
+        print(predict(pipe_line, str))
         if (predict(pipe_line, str) == "person"):
             crf = pickle.load(open("model_ner/ner_person_model.pkl", 'rb'))
             search_word = ""
@@ -142,7 +143,11 @@ def extract():
             print(search_word)
             qa_word.strip()
 
-            wiki = wikipedia.page(wikipedia.search(search_word)[0])
+            try:
+                wiki = wikipedia.page(wikipedia.search(search_word)[0])
+            except wikipedia.DisambiguationError as e:
+                s = random.choice(e.options)
+                wiki = wikipedia.page(s)
             result = {
                 'str' : str,
                 'predict': predict(pipe_line, str),
@@ -166,7 +171,7 @@ def extract():
             tags = crf.predict([sent2features(ner_tags)])[0]
             for i in range(len(ner_tags)):
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
-
+            print(ner_tags)
             for tag in ner_tags:
                 if(tag[2] in ["B-LOC","I-LOC","B-ORG","I-ORG"]):
                     search_word = search_word + tag[0] + " ";
@@ -176,7 +181,12 @@ def extract():
             search_word.strip().replace("_"," ")
             print(search_word)
             qa_word.strip().replace("_"," ")
-            wiki = wikipedia.page(wikipedia.search(search_word)[0])
+            try:
+                wiki = wikipedia.page(wikipedia.search(search_word)[0])
+            except wikipedia.DisambiguationError as e:
+                s = random.choice(e.options)
+                wiki = wikipedia.page(s)
+
             result = {
                 'str': str,
                 'predict': predict(pipe_line, str),
