@@ -1,5 +1,5 @@
 import wikipedia
 from underthesea import ner
 
-sentences = "bác Hồ sinh ngày nào"
+sentences = "Hôm nay có tin tức pháp luật không"
 print(ner(sentences))
