@@ -129,7 +129,7 @@ def extract():
             tags = crf.predict([sent2features(ner_tags)])[0]
             print(tags)
             for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0], ner_tags[i][1], tags[i])
+                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
 
             for tag in ner_tags:
                 if(tag[2] in ["B-PER","I-PER"]):
@@ -137,10 +137,10 @@ def extract():
                 if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | (tag[1] == 'M') | (tag[1] == 'A')):
                     qa_word = qa_word + tag[0] + " ";
 
-            search_word.strip().replace("_"," ")
+            search_word.strip()
             search_word=search_word.replace("_sinh","")
             print(search_word)
-            qa_word.strip().replace("_"," ")
+            qa_word.strip()
             wiki = wikipedia.page(search_word)
             result = {
                 'str' : str,
@@ -163,7 +163,7 @@ def extract():
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
             for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0], ner_tags[i][1], tags[i])
+                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
 
             for tag in ner_tags:
                 if(tag[2] in ["B-LOC","I-LOC","B-ORG","I-ORG"]):
@@ -195,7 +195,7 @@ def extract():
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
             for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0], ner_tags[i][1], tags[i])
+                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
             print(ner_tags)
             for tag in ner_tags:
                 if (tag[2] in ["B-NEWS", "I-NEWS"]):
@@ -217,7 +217,7 @@ def extract():
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
             for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0], ner_tags[i][1], tags[i])
+                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
             for tag in ner_tags:
                 if (tag[2] in ["B-NEWS", "I-NEWS"]):
                     word_ner = word_ner + +tag[0] + " ";
@@ -238,7 +238,7 @@ def extract():
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
             for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0], ner_tags[i][1], tags[i])
+                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
             for tag in ner_tags:
                 if (tag[2] in ["B-PLACE", "I-PLACE","B-LOC","I-LOC"]):
                     word_ner = word_ner + tag[0] + " ";
@@ -260,7 +260,7 @@ def extract():
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
             for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0], ner_tags[i][1], tags[i])
+                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
             for tag in ner_tags:
                 if (tag[2] in ["B-PROD", "I-PROD"]):
                     word_ner = word_ner + tag[0] + " ";
