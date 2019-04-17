@@ -1,5 +1,5 @@
 import wikipedia
 from underthesea import ner
 
-sentences = "Hôm nay có tin tức pháp luật không"
+sentences = "địa chỉ tòa nhà Landmark 81"
 print(ner(sentences))
