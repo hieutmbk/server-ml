@@ -220,27 +220,6 @@ def extract():
             }
 
             return json.dumps(result)
-        elif (predict(pipe_line, str) == "news"):
-            crf = pickle.load(open("model_ner/ner_news_model.pkl", 'rb'))
-            word_ner = ""
-            x = ner(str)
-            ner_tags = []
-            for i in x:
-                ner_tags.append((i[0].replace(" ", "_"), i[1]))
-            tags = crf.predict([sent2features(ner_tags)])[0]
-            for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
-            for tag in ner_tags:
-                if (tag[2] in ["B-NEWS", "I-NEWS"]):
-                    word_ner = word_ner + +tag[0] + " ";
-            word_ner.strip().replace("_"," ")
-            result = {
-                'str': str,
-                'predict': predict(pipe_line, str),
-                'word_ner': word_ner,
-            }
-
-            return json.dumps(result)
         elif (predict(pipe_line, str) == "location"):
             crf = pickle.load(open("model_ner/ner_location_model.pkl", 'rb'))
             word_ner = ""
@@ -251,6 +230,7 @@ def extract():
             tags = crf.predict([sent2features(ner_tags)])[0]
             for i in range(len(ner_tags)):
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
+            print(ner_tags)
             for tag in ner_tags:
                 if (tag[2] in ["B-PLACE", "I-PLACE","B-LOC","I-LOC"]):
                     word_ner = word_ner + tag[0] + " ";
