@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1875bf9b-a724-43fc-9b5d-6e0f0eca3ff5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wikii.py" beforeDir="false" afterPath="$PROJECT_DIR$/wikii.py" afterDir="false" />
-    </list>
+    <list default="true" id="1875bf9b-a724-43fc-9b5d-6e0f0eca3ff5" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +14,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-405">
-              <caret line="145" column="24" lean-forward="true" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
+            <state relative-caret-position="-473">
+              <caret line="180" column="27" lean-forward="true" selection-start-line="180" selection-start-column="27" selection-end-line="180" selection-end-column="27" />
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
@@ -108,8 +105,8 @@
       <recent name="D:\server-ml" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\server-ml" />
       <recent name="D:\server-ml\model_ner" />
+      <recent name="D:\server-ml" />
       <recent name="D:\server-ml\bin" />
     </key>
   </component>
@@ -256,9 +253,9 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40097404" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.40097404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.34253246" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.34253246" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -602,8 +599,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="145" column="24" lean-forward="true" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
+        <state relative-caret-position="-473">
+          <caret line="180" column="27" lean-forward="true" selection-start-line="180" selection-start-column="27" selection-end-line="180" selection-end-column="27" />
           <folding>
             <element signature="e#24#56#0" expanded="true" />
           </folding>
