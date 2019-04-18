@@ -135,26 +135,33 @@ def extract():
             for tag in ner_tags:
                 if(tag[2] in ["B-PER","I-PER"]):
                     search_word = search_word + tag[0] + " ";
-                if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | (tag[1] == 'M') | (tag[1] == 'A')):
+                if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A')):
                     qa_word = qa_word + tag[0] + " ";
 
             search_word.strip()
             search_word=search_word.replace("_sinh","")
             print(search_word)
             qa_word.strip()
-
-            try:
-                wiki = wikipedia.page(wikipedia.search(search_word)[0])
-            except wikipedia.DisambiguationError as e:
-                s = random.choice(e.options)
-                wiki = wikipedia.page(s)
+            url = ""
+            summary = ""
+            if(search_word == ""):
+                url = "null"
+                summary="null"
+            else:
+                try:
+                    wiki = wikipedia.page(wikipedia.search(search_word)[0])
+                except wikipedia.DisambiguationError as e:
+                    s = random.choice(e.options)
+                    wiki = wikipedia.page(s)
+                url = wiki.url
+                summary = wiki.summary
             result = {
                 'str' : str,
                 'predict': predict(pipe_line, str),
                 'ner' : ner_tags,
-                'url_wiki' : wiki.url,
+                'url_wiki' : url,
                 'qa_word' : qa_word,
-                'summary' : wiki.summary,
+                'summary' : summary,
 
             }
 
@@ -181,19 +188,26 @@ def extract():
             search_word.strip().replace("_"," ")
             print(search_word)
             qa_word.strip().replace("_"," ")
-            try:
-                wiki = wikipedia.page(wikipedia.search(search_word)[0])
-            except wikipedia.DisambiguationError as e:
-                s = random.choice(e.options)
-                wiki = wikipedia.page(s)
-
+            url = ""
+            summary = ""
+            if (search_word == ""):
+                url = "null"
+                summary = "null"
+            else:
+                try:
+                    wiki = wikipedia.page(wikipedia.search(search_word)[0])
+                except wikipedia.DisambiguationError as e:
+                    s = random.choice(e.options)
+                    wiki = wikipedia.page(s)
+                url = wiki.url
+                summary = wiki.summary
             result = {
                 'str': str,
                 'predict': predict(pipe_line, str),
                 'ner': ner_tags,
-                'url_wiki': wiki.url,
+                'url_wiki':url,
                 'qa_word': qa_word,
-                'summary': wiki.summary,
+                'summary': summary,
 
             }
 

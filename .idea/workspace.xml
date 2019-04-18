@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1875bf9b-a724-43fc-9b5d-6e0f0eca3ff5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wikii.py" beforeDir="false" afterPath="$PROJECT_DIR$/wikii.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +17,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="281" selection-start-line="281" selection-end-line="281" />
+            <state relative-caret-position="-405">
+              <caret line="145" column="24" lean-forward="true" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
@@ -28,8 +29,8 @@
       <file leaf-file-name="wikii.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wikii.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="68">
+              <caret line="4" column="42" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="42" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -63,8 +64,8 @@
         <option value="$PROJECT_DIR$/ner.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/wikii.py" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -103,13 +104,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\server-ml" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\server-ml" />
       <recent name="D:\server-ml\model_ner" />
       <recent name="D:\server-ml\bin" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\server-ml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -124,7 +125,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.wikii">
+  <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="server-ml" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -224,8 +225,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.wikii" />
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.wikii" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.ner" />
         <item itemvalue="Python.crawl_wiki_summary" />
@@ -252,9 +253,10 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22544643" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.44967532" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40097404" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.34253246" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -265,7 +267,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -591,8 +592,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wikii.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="68">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="42" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
@@ -601,8 +602,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="281" selection-start-line="281" selection-end-line="281" />
+        <state relative-caret-position="-405">
+          <caret line="145" column="24" lean-forward="true" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
           <folding>
             <element signature="e#24#56#0" expanded="true" />
           </folding>
