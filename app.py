@@ -14,13 +14,21 @@ PORT = 5000
 
 app = Flask(__name__)
 
-sav_filename = 'svm_model.sav'
-filename_countvect = 'finalized_countvectorizer.sav'
-filename_tfidf = 'finalized_tfidftransformer.sav'
+sav_filename = 'model_classfication/model_1/svm_model.sav'
+filename_countvect = 'model_classfication/model_1/finalized_countvectorizer.sav'
+filename_tfidf = 'model_classfication/model_1/finalized_tfidftransformer.sav'
+
+sav_filename_2 = 'model_classfication/model_2/svm_model.sav'
+filename_countvect_2 = 'model_classfication/model_2/finalized_countvectorizer.sav'
+filename_tfidf_2 = 'model_classfication/model_2/finalized_tfidftransformer.sav'
 
 clf_svm = joblib.load(sav_filename)
 loaded_cvec = joblib.load(filename_countvect)
 loaded_tfidf_transformer = joblib.load(filename_tfidf)
+
+clf_svm_2 = joblib.load(sav_filename_2)
+loaded_cvec_2 = joblib.load(filename_countvect_2)
+loaded_tfidf_transformer_2 = joblib.load(filename_tfidf_2)
 pipe_line = Pipeline([
     ("transformer", FeatureTransformer()),
     ("vect", loaded_cvec),
@@ -28,6 +36,12 @@ pipe_line = Pipeline([
     ("clf-svm", clf_svm)
 ])
 
+pipe_line_2 = Pipeline([
+    ("transformer", FeatureTransformer()),
+    ("vect", loaded_cvec_2),
+    ("tfidf", loaded_tfidf_transformer_2),
+    ("clf-svm", clf_svm_2)
+])
 
 def word2features(sent, i):
     word = sent[i][0]
@@ -93,34 +107,9 @@ def extract():
 
     if request.method == 'GET':
         str = request.args['str']
-        # print(str)
-        # ner_word = ner(str)
-        # print(ner_word)
-        # search_word = ""
-        # qa_word = ""
-        # for i in range(len(ner_word)):
-        #     if (ner_word[i][3] in ["B-PER","I-LOC", "I-PER","B-LOC","B-ORG"]):
-        #         search_word = search_word + ner_word[i][0] + " ";
-        #
-        #     if( ( (ner_word[i][1]=='N') & (ner_word[i][3]=='O') ) | ( (ner_word[i][1]=='V') & (ner_word[i][0] != 'là') ) | (ner_word[i][1]=='M')):
-        #         first_word = ner_word[i][0][0]
-        #         if(first_word.isupper()):
-        #             if( (ner_word[i][0] == "Quê") | (ner_word[i][0] == "GDP") ):
-        #
-        #                 qa_word = qa_word + ner_word[i][0] + " ";
-        #             else:
-        #                 search_word = search_word + ner_word[i][0] + " ";
-        #
-        #         else:
-        #             qa_word = qa_word + ner_word[i][0] + " ";
-        #     if ((ner_word[i][1] == 'A') & (ner_word[i][3] == 'O')):
-        #         qa_word = qa_word + ner_word[i][0] + " ";
-        # search_word.strip()
-        # print(search_word)
-        # qa_word.strip()
         print(predict(pipe_line, str))
-        if (predict(pipe_line, str) == "person"):
-            crf = pickle.load(open("model_ner/ner_person_model.pkl", 'rb'))
+        if (predict(pipe_line, str) == "entity"):
+            crf = pickle.load(open("model_ner/ner_entity_model.pkl", 'rb'))
             search_word = ""
             qa_word = ""
             ner_tags = []
@@ -133,10 +122,17 @@ def extract():
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
             print(ner_tags)
             for tag in ner_tags:
-                if(tag[2] in ["B-PER","I-PER"]):
-                    search_word = search_word + tag[0] + " ";
-                if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A')):
-                    qa_word = qa_word + tag[0] + " ";
+                if(tag[2] in ["B-PER","I-PER","B-LOC","I-LOC","B-ORG","B-ORG"]):
+                    if (" sinh" in tag[0]):
+                        search_word = search_word + tag[0].replace(" sinh","") + " ";
+                        qa_word = qa_word + "sinh "
+                    elif (" quê" in tag[0]):
+                        search_word = search_word + tag[0].replace(" quê", "") + " ";
+                        qa_word = qa_word + "quê "
+                    else:
+                        search_word = search_word + tag[0]+ " ";
+                if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
+                    qa_word = qa_word + tag[0] + " "
 
             search_word.strip()
             search_word=search_word.replace("_sinh","")
@@ -158,56 +154,11 @@ def extract():
             result = {
                 'str' : str,
                 'predict': predict(pipe_line, str),
+                'predict_2': predict(pipe_line_2, str),
                 'ner' : ner_tags,
                 'url_wiki' : url,
                 'qa_word' : qa_word,
                 'summary' : summary,
-
-            }
-
-            return json.dumps(result)
-
-        elif (predict(pipe_line, str) == "organization"):
-            crf = pickle.load(open("model_ner/ner_organization_model.pkl", 'rb'))
-            search_word = ""
-            qa_word = ""
-            ner_tags = []
-            x = ner(str)
-            for i in x:
-                ner_tags.append((i[0].replace(" ", "_"), i[1]))
-            tags = crf.predict([sent2features(ner_tags)])[0]
-            for i in range(len(ner_tags)):
-                ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
-            print(ner_tags)
-            for tag in ner_tags:
-                if(tag[2] in ["B-LOC","I-LOC","B-ORG","I-ORG"]):
-                    search_word = search_word + tag[0] + " ";
-                if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | (tag[1] == 'M') | (tag[1] == 'A')):
-                    qa_word = qa_word + tag[0] + " ";
-
-            search_word.strip().replace("_"," ")
-            print(search_word)
-            qa_word.strip().replace("_"," ")
-            url = ""
-            summary = ""
-            if (search_word == ""):
-                url = "null"
-                summary = "null"
-            else:
-                try:
-                    wiki = wikipedia.page(wikipedia.search(search_word)[0])
-                except wikipedia.DisambiguationError as e:
-                    s = random.choice(e.options)
-                    wiki = wikipedia.page(s)
-                url = wiki.url
-                summary = wiki.summary
-            result = {
-                'str': str,
-                'predict': predict(pipe_line, str),
-                'ner': ner_tags,
-                'url_wiki':url,
-                'qa_word': qa_word,
-                'summary': summary,
 
             }
 
