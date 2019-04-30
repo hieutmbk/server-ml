@@ -113,6 +113,7 @@ def extract():
             search_word = ""
             qa_word = ""
             ner_tags = []
+            list = []
             x = ner(str)
             for i in x:
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
@@ -126,13 +127,17 @@ def extract():
                     if (" sinh" in tag[0]):
                         search_word = search_word + tag[0].replace(" sinh","") + " ";
                         qa_word = qa_word + "sinh "
+                        list.append("sinh")
                     elif (" quê" in tag[0]):
                         search_word = search_word + tag[0].replace(" quê", "") + " ";
                         qa_word = qa_word + "quê "
+                        list.append("quê")
                     else:
                         search_word = search_word + tag[0]+ " ";
+                        list.append(tag[0])
                 if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
                     qa_word = qa_word + tag[0] + " "
+                    list.append(tag[0])
 
             search_word.strip()
             search_word=search_word.replace("_sinh","")
@@ -155,6 +160,7 @@ def extract():
                 'str' : str,
                 'predict': predict(pipe_line, str),
                 'predict_2': predict(pipe_line_2, str),
+                'list' : list,
                 'ner' : ner_tags,
                 'url_wiki' : url,
                 'qa_word' : qa_word,
