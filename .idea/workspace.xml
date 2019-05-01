@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1875bf9b-a724-43fc-9b5d-6e0f0eca3ff5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stopwords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/stopwords.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wikii.py" beforeDir="false" afterPath="$PROJECT_DIR$/wikii.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="133" column="42" lean-forward="true" selection-start-line="133" selection-start-column="42" selection-end-line="133" selection-end-column="42" />
+            <state relative-caret-position="198">
+              <caret line="266" column="7" selection-start-line="266" selection-start-column="7" selection-end-line="266" selection-end-column="7" />
               <folding>
                 <element signature="e#24#56#0" expanded="true" />
               </folding>
@@ -35,14 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wikii.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wikii.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wikii.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#16#0" expanded="true" />
-              </folding>
+              <caret line="6" selection-start-line="6" selection-end-line="13" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -73,8 +72,9 @@
         <option value="$PROJECT_DIR$/ner.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/stopwords.txt" />
         <option value="$PROJECT_DIR$/wikii.py" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -89,7 +89,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -123,6 +122,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -130,15 +130,15 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\server-ml" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\server-ml\model_ner" />
       <recent name="D:\server-ml\model_classfication\model_1" />
       <recent name="D:\server-ml\model_classfication\model_2" />
       <recent name="D:\server-ml" />
       <recent name="D:\server-ml\bin" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\server-ml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -153,7 +153,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.wikii">
+  <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="server-ml" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -253,8 +253,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.wikii" />
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.wikii" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.ner" />
         <item itemvalue="Python.crawl_wiki_summary" />
@@ -276,6 +276,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22767857" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -300,16 +301,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="34" lean-forward="true" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="34" />
-          <folding>
-            <element signature="e#24#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -617,22 +608,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
+    <entry file="file://$PROJECT_DIR$/stopwords.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="133" column="42" lean-forward="true" selection-start-line="133" selection-start-column="42" selection-end-line="133" selection-end-column="42" />
-          <folding>
-            <element signature="e#24#56#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="32997">
+          <caret line="1941" column="1" selection-start-line="1941" selection-start-column="1" selection-end-line="1941" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wikii.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <caret line="6" selection-start-line="6" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="266" column="7" selection-start-line="266" selection-start-column="7" selection-end-line="266" selection-end-column="7" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#24#56#0" expanded="true" />
           </folding>
         </state>
       </provider>

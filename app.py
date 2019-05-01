@@ -8,6 +8,7 @@ from underthesea import ner
 from sklearn.externals import joblib
 import pickle
 import wikipedia
+from pyvi import ViTokenizer,ViPosTagger
 
 wikipedia.set_lang("vi")
 PORT = 5000
@@ -104,7 +105,6 @@ def ner_tag(str) :
 
 @app.route('/predict', methods=['GET'])
 def extract():
-
     if request.method == 'GET':
         str = request.args['str']
         print(predict(pipe_line, str))
@@ -248,6 +248,25 @@ def extract():
             }
 
             return json.dumps(result)
+
+
+@app.route('/ner', methods=['GET'])
+def action():
+    if request.method == 'GET':
+        str = request.args['str']
+        vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
+
+        words = []
+        for word in vitoken[0]:
+            with open('stopwords.txt', encoding="utf-8") as f1:
+                if word not in f1.read():
+                    words.append(word)
+        str = ' '.join(words)
+        result = {
+            'str': str,
+
+        }
+        return json.dumps(result)
 if __name__ == '__main__':
     app.run()
 
