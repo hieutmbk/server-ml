@@ -262,8 +262,9 @@ def action():
                 if word not in f1.read():
                     words.append(word)
         str = ' '.join(words)
+        print(str)
         result = {
-            'str': str,
+            'str': str.encode("utf-8").decode("utf-8")
 
         }
         return json.dumps(result)
