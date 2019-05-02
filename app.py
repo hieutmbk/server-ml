@@ -127,10 +127,12 @@ def extract():
                     if (" sinh" in tag[0]):
                         search_word = search_word + tag[0].replace(" sinh","") + " ";
                         qa_word = qa_word + "sinh "
+                        list.append(tag[0].replace(" sinh",""))
                         list.append("sinh")
                     elif (" quê" in tag[0]):
                         search_word = search_word + tag[0].replace(" quê", "") + " ";
                         qa_word = qa_word + "quê "
+                        list.append(tag[0].replace(" quê", ""))
                         list.append("quê")
                     else:
                         search_word = search_word + tag[0]+ " ";
