@@ -123,7 +123,7 @@ def extract():
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
             print(ner_tags)
             for tag in ner_tags:
-                if(tag[2] in ["B-PER","I-PER","B-LOC","I-LOC","B-ORG","B-ORG"]):
+                if(tag[2] in ["B-PER","I-PER","B-LOC","I-LOC","B-ORG","I-ORG"]):
                     if (" sinh" in tag[0]):
                         search_word = search_word + tag[0].replace(" sinh","") + " ";
                         qa_word = qa_word + "sinh "
