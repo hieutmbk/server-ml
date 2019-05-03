@@ -140,7 +140,10 @@ def extract():
                     else:
                         search_word = search_word + tag[0]+ " ";
                         list.append(tag[0])
-                if ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
+                elif (tag[0][0].isupper()) :
+                    search_word = search_word + tag[0] + " ";
+                    list.append(tag[0])
+                elif ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
                     qa_word = qa_word + tag[0] + " "
                     list.append(tag[0])
 
@@ -386,7 +389,7 @@ def foo():
                 list.append(i[0])
             elif (i[0][0].isupper()):
                 list.append(i[0])
-            elif (i[0][0].isdigit()):
+            elif ((i[0][0].isdigit()) & (predict == "person")):
                 list.append(i[0])
         str = ' '.join(list)
         print(str)
