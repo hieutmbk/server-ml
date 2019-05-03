@@ -256,7 +256,7 @@ def extract():
 @app.route('/ner', methods=['GET'])
 def action():
     if request.method == 'GET':
-        str = request.args['str'] + request.args['title']
+        str = request.args['str']
         predict = request.args['predict']
         if ((predict == "time_2") |(predict == "number") ) :
             regex = ["([0-9]{1,2}\sgiờ\s[0-9]{1,2})","([0-9]{1,2}\:[0-9]{1,2})","([0-9]{1,2}\stháng\s[0-9]{1,2}\snăm\s[0-9]{4})","([0-9]{1,2}\stháng\s[0-9]{1,2})"]
