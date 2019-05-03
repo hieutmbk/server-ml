@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from os import abort
+
 from flask import Flask, request
 from sklearn.pipeline import Pipeline
 from feature_transformer import FeatureTransformer
@@ -319,6 +321,13 @@ def action():
 
             }
             return json.dumps(result)
+
+@app.route('/foo', methods=['POST'])
+def foo():
+    if not request.json:
+        abort(400)
+    print(request.json)
+    return json.dumps(request.json)
 if __name__ == '__main__':
     app.run()
 
