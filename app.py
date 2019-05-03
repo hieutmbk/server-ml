@@ -376,7 +376,9 @@ def foo():
         for i in list_ner:
             if (i[3] in ["B-LOC", "I-LOC", "B-PER", "I-PER", "B-ORG", "I-ORG"]):
                 list.append(i[0])
-            if (i[0][0].isdigit()):
+            elif (i[0][0].isupper()):
+                list.append(i[0])
+            elif (i[0][0].isdigit()):
                 list.append(i[0])
         # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
         # words = []
