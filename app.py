@@ -8,6 +8,7 @@ from underthesea import ner
 from sklearn.externals import joblib
 import pickle
 import wikipedia
+import re
 from pyvi import ViTokenizer,ViPosTagger
 
 wikipedia.set_lang("vi")
@@ -256,20 +257,68 @@ def extract():
 def action():
     if request.method == 'GET':
         str = request.args['str']
-        vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
+        predict = request.args['predict']
+        if ((predict == "time_2") |(predict == "number") ) :
+            regex = ["([0-9]{1,2}\sgiờ\s[0-9]{1,2})","([0-9]{1,2}\:[0-9]{1,2})","([0-9]{1,2}\stháng\s[0-9]{1,2}\snăm\s[0-9]{4})","([0-9]{1,2}\stháng\s[0-9]{1,2})"]
+            sentence = str
+            list = []
+            for r in regex:
+                x = re.findall(r, sentence)
+                if (x):
+                    for i in x:
+                        sentence = sentence.replace(i, "")
+                        if("tháng" in i):
+                            i=i.replace(" tháng ","/")
+                        if ("năm" in i):
+                            i=i.replace(" năm ", "/")
+                        if ("giờ" in i):
+                            i=i.replace(" giờ ", ":")
+                        list.append(i)
 
-        words = []
-        for word in vitoken[0]:
-            with open('stopwords.txt', encoding="utf-8") as f1:
-                if word not in f1.read():
-                    words.append(word)
-        str = ' '.join(words)
-        print(str)
-        result = {
-            'str': str.encode("utf-8").decode("utf-8")
+            sentence=ViTokenizer.tokenize(sentence.replace("  "," "))
 
-        }
-        return json.dumps(result)
+            x= sentence.split(" ")
+            for i in x :
+                if (i[0].isdigit()):
+                    list.append(i)
+            for idx, item in enumerate(list):
+                list[idx] = list[idx].replace(" ","_")
+
+            # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
+            #
+            # words = []
+            # for word in vitoken[0]:
+            #     with open('stopwords.txt', encoding="utf-8") as f1:
+            #         if word not in f1.read():
+            #             words.append(word)
+            str = ' '.join(list)
+            print(str)
+            result = {
+                'str': str
+
+            }
+            return json.dumps(result)
+        else:
+            list_ner=ner(ViTokenizer.tokenize(str))
+            list = []
+            for i in list_ner:
+                if (i[3] in ["B-LOC","I-LOC","B-PER","I-PER","B-ORG","I-ORG"]) :
+                        list.append(i[0])
+                if(i[0][0].isdigit()):
+                    list.append(i[0])
+            # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
+            # words = []
+            # for word in vitoken[0]:
+            #     with open('stopwords.txt', encoding="utf-8") as f1:
+            #         if word not in f1.read():
+            #             words.append(word)
+            str = ' '.join(list)
+            print(str)
+            result = {
+                'str': str
+
+            }
+            return json.dumps(result)
 if __name__ == '__main__':
     app.run()
 
