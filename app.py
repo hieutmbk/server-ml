@@ -371,6 +371,14 @@ def foo():
         }
         return json.dumps(result)
     else:
+
+        vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
+        words = []
+        for word in vitoken[0]:
+            with open('stopwords.txt', encoding="utf-8") as f1:
+                if word not in f1.read():
+                    words.append(word)
+        str = ' '.join(list)
         list_ner = ner(ViTokenizer.tokenize(str))
         list = []
         for i in list_ner:
@@ -380,12 +388,6 @@ def foo():
                 list.append(i[0])
             elif (i[0][0].isdigit()):
                 list.append(i[0])
-        # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
-        # words = []
-        # for word in vitoken[0]:
-        #     with open('stopwords.txt', encoding="utf-8") as f1:
-        #         if word not in f1.read():
-        #             words.append(word)
         str = ' '.join(list)
         print(str)
         result = {
