@@ -357,7 +357,7 @@ def foo():
             if (i[0].isdigit()):
                 list.append(i)
         for idx, item in enumerate(list):
-            list[idx] = list[idx].replace(" ", "_")
+            list[idx] = list[idx].replace(" ", "_").replace("-","/")
 
         # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
         #
