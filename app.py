@@ -378,8 +378,8 @@ def foo():
             with open('stopwords.txt', encoding="utf-8") as f1:
                 if word not in f1.read():
                     words.append(word)
-        str = ' '.join(list)
-        list_ner = ner(ViTokenizer.tokenize(str))
+        str = ' '.join(words)
+        list_ner = ner(str)
         list = []
         for i in list_ner:
             if (i[3] in ["B-LOC", "I-LOC", "B-PER", "I-PER", "B-ORG", "I-ORG"]):
