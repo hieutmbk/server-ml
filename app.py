@@ -334,7 +334,7 @@ def foo():
     str = request.json["str"]
     predict = request.json["predict"]
     if ((predict == "time_2") | (predict == "number")):
-        regex =["(\d{1,2}\:\d{1,2})","\d{1,2}\sgiờ\s\d{1,2}","\d{1,2}\sgiờ","\d{1,2}h\d{0,2}","(\d{1,2}\stháng\s\d{1,2}\snăm\s\d{4})","(\d{1,2}\stháng\s\d{1,2})","\d{1,2}\snăm\s\d{4}","\d{1,2}\s\-\s\d{1,2}\s\-\s\d{4}","\d{1,2}\s\-\s\d{1,2}","\d{4}"]
+        regex =["(\d{1,2}\:\d{1,2})","\d{1,2}\sgiờ\s\d{1,2}","\d{1,2}\sgiờ","\d{1,2}h\d{0,2}","(\d{1,2}\stháng\s\d{1,2}\snăm\s\d{4})","(\d{1,2}\stháng\s\d{1,2})","\d{1,2}\snăm\s\d{4}","\d{1,2}\s\-\s\d{1,2}\s\-\s\d{4}","\d{1,2}\s\-\s\d{1,2}"]
         sentence = str
         list = []
         for r in regex:
@@ -348,10 +348,12 @@ def foo():
 
         x = sentence.split(" ")
         for i in x:
-             if (i[0].isdigit() ):
-                 if (predict == "time_2"):
-                     if(("-" in i[0]) | ("/" in i[0])):
+             if (i[0].isdigit()):
+                 if(("-" in i[0]) | ("/" in i[0])):
+                     if (predict == "time_2"):
                         list.append(i.replace("-","/"))
+                 if(len(i[0]) == 4):
+                     list.append(i)
                  else:
                      list.append(i)
         for idx, item in enumerate(list):
