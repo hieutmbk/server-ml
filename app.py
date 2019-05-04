@@ -391,9 +391,9 @@ def foo():
         list = []
         for i in list_ner:
             if (i[3] in ["B-LOC", "I-LOC", "B-PER", "I-PER", "B-ORG", "I-ORG"]):
-                list.append(i[0])
+                list.append(i[0].replace(" ","_"))
             elif (i[0][0].isupper()):
-                list.append(i[0])
+                list.append(i[0].replace(" ","_"))
             elif ((i[0][0].isdigit()) & (predict == "person")):
                 list.append(i[0])
         str = ' '.join(list)
