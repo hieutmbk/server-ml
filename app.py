@@ -6,7 +6,7 @@ from sklearn.pipeline import Pipeline
 from feature_transformer import FeatureTransformer
 import json
 import random
-from underthesea import ner
+from underthesea import ner,word_tokenize
 from sklearn.externals import joblib
 import pickle
 import wikipedia
@@ -375,13 +375,18 @@ def foo():
         return json.dumps(result)
     else:
 
-        vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
-        words = []
-        for word in vitoken[0]:
-            with open('stopwords.txt', encoding="utf-8") as f1:
-                if word not in f1.read():
-                    words.append(word)
-        str = ' '.join(words)
+        # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
+        # words = []
+        # for word in vitoken[0]:
+        #     with open('stopwords.txt', encoding="utf-8") as f1:
+        #         if word not in f1.read():
+        #             words.append(word)
+        # str = ' '.join(words)
+
+        tokenize = word_tokenize(str);
+        for idx, item in enumerate(tokenize):
+            tokenize[idx] = tokenize[idx].replace(" ", "_")
+        str = " ".join(tokenize)
         list_ner = ner(str)
         list = []
         for i in list_ner:
