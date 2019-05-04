@@ -110,7 +110,7 @@ def ner_tag(str) :
 def extract():
     if request.method == 'GET':
         str = request.args['str']
-        print(predict(pipe_line, str))
+
         if (predict(pipe_line, str) == "entity"):
             crf = pickle.load(open("model_ner/ner_entity_model.pkl", 'rb'))
             search_word = ""
@@ -118,6 +118,7 @@ def extract():
             ner_tags = []
             list = []
             x = ner(str)
+            print(x)
             for i in x:
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
@@ -333,8 +334,7 @@ def foo():
     str = request.json["str"]
     predict = request.json["predict"]
     if ((predict == "time_2") | (predict == "number")):
-        regex = ["([0-9]{1,2}\sgiờ\s[0-9]{1,2})", "([0-9]{1,2}\:[0-9]{1,2})",
-                 "([0-9]{1,2}\stháng\s[0-9]{1,2}\snăm\s[0-9]{4})", "([0-9]{1,2}\stháng\s[0-9]{1,2})"]
+        regex =["(\d{1,2}\:\d{1,2})","\d{1,2}\sgiờ\s\d{1,2}","\d{1,2}\sgiờ","\d{1,2}h\d{0,2}","(\d{1,2}\stháng\s\d{1,2}\snăm\s\d{4})","(\d{1,2}\stháng\s\d{1,2})","\d{1,2}\snăm\s\d{4}","\d{1,2}\s\-\s\d{1,2}\s\-\s\d{4}","\d{1,2}\s\-\s\d{1,2}","\d{4}"]
         sentence = str
         list = []
         for r in regex:
@@ -342,20 +342,18 @@ def foo():
             if (x):
                 for i in x:
                     sentence = sentence.replace(i, "")
-                    if ("tháng" in i):
-                        i = i.replace(" tháng ", "/")
-                    if ("năm" in i):
-                        i = i.replace(" năm ", "/")
-                    if ("giờ" in i):
-                        i = i.replace(" giờ ", ":")
-                    list.append(i)
+                    list.append(i.replace(" ", "").replace(":", "h").replace("giờ", "h").replace("tháng", "/").replace("năm","/").replace("-", "/"))
 
         sentence = ViTokenizer.tokenize(sentence.replace("  ", " "))
 
         x = sentence.split(" ")
         for i in x:
-            if (i[0].isdigit()):
-                list.append(i)
+             if (i[0].isdigit() ):
+                 if (predict == "time_2"):
+                     if(("-" in i[0]) | ("/" in i[0])):
+                        list.append(i.replace("-","/"))
+                 else:
+                     list.append(i)
         for idx, item in enumerate(list):
             list[idx] = list[idx].replace(" ", "_").replace("-","/")
 
@@ -394,7 +392,7 @@ def foo():
                 list.append(i[0].replace(" ","_"))
             elif (i[0][0].isupper()):
                 list.append(i[0].replace(" ","_"))
-            elif ((i[0][0].isdigit()) & (predict == "person")):
+            elif ((i[0][0].isdigit()) & (predict == "number")):
                 list.append(i[0])
         str = ' '.join(list)
         print(str)
