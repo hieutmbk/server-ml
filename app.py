@@ -258,74 +258,6 @@ def extract():
 
             return json.dumps(result)
 
-
-@app.route('/ner', methods=['GET'])
-def action():
-    if request.method == 'GET':
-        str = request.args['str']
-        predict = request.args['predict']
-        if ((predict == "time_2") |(predict == "number") ) :
-            regex = ["([0-9]{1,2}\sgiờ\s[0-9]{1,2})","([0-9]{1,2}\:[0-9]{1,2})","([0-9]{1,2}\stháng\s[0-9]{1,2}\snăm\s[0-9]{4})","([0-9]{1,2}\stháng\s[0-9]{1,2})"]
-            sentence = str
-            list = []
-            for r in regex:
-                x = re.findall(r, sentence)
-                if (x):
-                    for i in x:
-                        sentence = sentence.replace(i, "")
-                        if("tháng" in i):
-                            i=i.replace(" tháng ","/")
-                        if ("năm" in i):
-                            i=i.replace(" năm ", "/")
-                        if ("giờ" in i):
-                            i=i.replace(" giờ ", ":")
-                        list.append(i)
-
-            sentence=ViTokenizer.tokenize(sentence.replace("  "," "))
-
-            x= sentence.split(" ")
-            for i in x :
-                if (i[0].isdigit()):
-                    list.append(i)
-            for idx, item in enumerate(list):
-                list[idx] = list[idx].replace(" ","_")
-
-            # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
-            #
-            # words = []
-            # for word in vitoken[0]:
-            #     with open('stopwords.txt', encoding="utf-8") as f1:
-            #         if word not in f1.read():
-            #             words.append(word)
-            str = ' '.join(list)
-            print(str)
-            result = {
-                'str': str
-
-            }
-            return json.dumps(result)
-        else:
-            list_ner=ner(ViTokenizer.tokenize(str))
-            list = []
-            for i in list_ner:
-                if (i[3] in ["B-LOC","I-LOC","B-PER","I-PER","B-ORG","I-ORG"]) :
-                        list.append(i[0])
-                if(i[0][0].isdigit()):
-                    list.append(i[0])
-            # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
-            # words = []
-            # for word in vitoken[0]:
-            #     with open('stopwords.txt', encoding="utf-8") as f1:
-            #         if word not in f1.read():
-            #             words.append(word)
-            str = ' '.join(list)
-            print(str)
-            result = {
-                'str': str
-
-            }
-            return json.dumps(result)
-
 @app.route('/foo', methods=['POST'])
 def foo():
     if not request.json:
@@ -336,28 +268,39 @@ def foo():
     if ((predict == "time_2") | (predict == "number")):
         regex =["(\d{1,2}\:\d{1,2})","\d{1,2}\sgiờ\s\d{1,2}","\d{1,2}\sgiờ","\d{1,2}h\d{0,2}","(\d{1,2}\stháng\s\d{1,2}\snăm\s\d{4})","(\d{1,2}\stháng\s\d{1,2})","\d{1,2}\snăm\s\d{4}","\d{1,2}\s\-\s\d{1,2}\s\-\s\d{4}","\d{1,2}\s\-\s\d{1,2}"]
         sentence = str
-        list = []
+
+        list_time = []
+        list_number = []
         for r in regex:
             x = re.findall(r, sentence)
+
             if (x):
                 for i in x:
+
                     sentence = sentence.replace(i, "")
-                    list.append(i.replace(" ", "").replace(":", "h").replace("giờ", "h").replace("tháng", "/").replace("năm","/").replace("-", "/"))
+                    if (predict == "time_2"):
+                        list_time.append(i.replace(" ", "").replace(":", "h").replace("giờ", "h").replace("tháng", "/").replace("năm","/").replace("-", "/"))
 
         sentence = ViTokenizer.tokenize(sentence.replace("  ", " "))
 
         x = sentence.split(" ")
         for i in x:
              if (i[0].isdigit()):
-                 if(("-" in i[0]) | ("/" in i[0])):
+                 print(i)
+                 if(("-" in i) | ("/" in i)):
+                     print("AAA")
                      if (predict == "time_2"):
-                        list.append(i.replace("-","/"))
-                 if(len(i[0]) == 4):
-                     list.append(i)
+
+                        list_time.append(i.replace("-","/"))
+                 elif(len(i) == 4):
+                     print("BBB")
+                     list_time.append(i)
+                     list_number.append(i)
                  else:
-                     list.append(i)
-        for idx, item in enumerate(list):
-            list[idx] = list[idx].replace(" ", "_").replace("-","/")
+                     print("ccc")
+                     list_number.append(i)
+        for idx, item in enumerate(list_time):
+            list_time[idx] = list_time[idx].replace(" ", "_").replace("-","/")
 
         # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
         #
@@ -366,13 +309,21 @@ def foo():
         #     with open('stopwords.txt', encoding="utf-8") as f1:
         #         if word not in f1.read():
         #             words.append(word)
-        str = ' '.join(list)
-        print(str)
-        result = {
-            'str': str
 
-        }
-        return json.dumps(result)
+        if(predict == "time_2"):
+            print(' '.join(list_time))
+            result = {
+                'str': ' '.join(list_time)
+
+            }
+            return json.dumps(result)
+        elif (predict == "number"):
+            print(' '.join(list_number))
+            result = {
+                'str': ' '.join(list_number)
+
+            }
+            return json.dumps(result)
     else:
 
         # vitoken = ViPosTagger.postagging(ViTokenizer.tokenize(str))
@@ -394,8 +345,6 @@ def foo():
                 list.append(i[0].replace(" ","_"))
             elif (i[0][0].isupper()):
                 list.append(i[0].replace(" ","_"))
-            elif ((i[0][0].isdigit()) & (predict == "number")):
-                list.append(i[0])
         str = ' '.join(list)
         print(str)
         result = {
