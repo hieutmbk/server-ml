@@ -118,25 +118,26 @@ def extract():
             ner_tags = []
             list = []
             x = ner(str)
-            print(x)
+
             for i in x:
                 ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
 
             for i in range(len(ner_tags)):
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
-            print(ner_tags)
+
             for tag in ner_tags:
                 if(tag[2] in ["B-PER","I-PER","B-LOC","I-LOC","B-ORG","I-ORG"]):
-                    if (" sinh" in tag[0]):
-                        search_word = search_word + tag[0].replace(" sinh","") + " ";
+                    if ("sinh" in tag[0]):
+                        search_word = search_word + tag[0].replace("sinh","") + " ";
                         qa_word = qa_word + "sinh "
-                        list.append(tag[0].replace(" sinh",""))
+                        print(qa_word)
+                        list.append(tag[0].replace("sinh",""))
                         list.append("sinh")
-                    elif (" quê" in tag[0]):
-                        search_word = search_word + tag[0].replace(" quê", "") + " ";
+                    elif ("quê" in tag[0]):
+                        search_word = search_word + tag[0].replace("quê", "") + " ";
                         qa_word = qa_word + "quê "
-                        list.append(tag[0].replace(" quê", ""))
+                        list.append(tag[0].replace("quê", ""))
                         list.append("quê")
                     else:
                         search_word = search_word + tag[0]+ " ";
@@ -154,6 +155,9 @@ def extract():
             qa_word.strip()
             url = ""
             summary = ""
+            for w in list:
+                if(w == ""):
+                    list.remove(w)
             if(search_word == ""):
                 url = "null"
                 summary="null"
