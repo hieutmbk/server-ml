@@ -254,9 +254,13 @@ def extract():
 
             return json.dumps(result)
         elif (predict(pipe_line, str) == "time"):
-
+            list = []
+            for tag in ner(str):
+                if ((((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[3] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | (
+                        (tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
+                    list.append(tag[0])
             loc = False
-
+            print(list)
             for word in str.split(" ") :
                 if(word[0].isupper()):
                     loc = True
@@ -264,7 +268,8 @@ def extract():
             result = {
                 'str': str,
                 'predict': predict(pipe_line, str),
-                'loc' : loc
+                'loc' : loc,
+                'list' : list
             }
 
             return json.dumps(result)

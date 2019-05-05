@@ -3,7 +3,7 @@ from underthesea import ner, word_tokenize
 from pyvi import ViTokenizer,ViPosTagger
 import re
 wikipedia.set_lang("vi")
-sentences = "ngày 18-05 tại bắc ninh 18/04/2016 2048 18-5-1996 8 giờ 15 "
+sentences = "ngày giải phóng đất nước "
 tokenize = ner(sentences);
 print(tokenize)
 # print(tokenize)
