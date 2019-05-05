@@ -149,7 +149,7 @@ def extract():
                     list.append(tag[0])
 
             search_word.strip()
-            search_word=search_word.replace("_sinh","")
+            search_word=search_word.replace(" sinh","")
             print(search_word)
             qa_word.strip()
             url = ""
