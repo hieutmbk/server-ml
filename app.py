@@ -255,11 +255,11 @@ def extract():
             return json.dumps(result)
         elif (predict(pipe_line, str) == "time"):
 
-            loc ="false"
+            loc = False
 
             for word in str.split(" ") :
                 if(word[0].isupper()):
-                    loc = "true"
+                    loc = True
                     break
             result = {
                 'str': str,
