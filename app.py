@@ -125,13 +125,13 @@ def extract():
 
             for i in range(len(ner_tags)):
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
-
+            print(ner(str))
             for tag in ner_tags:
-                if(tag[2] in ["B-PER","I-PER","B-LOC","I-LOC","B-ORG","I-ORG"]):
+                if((tag[2] in ["B-PER","I-PER","B-LOC","I-LOC","B-ORG","I-ORG"])):
                     if ("sinh" in tag[0]):
                         search_word = search_word + tag[0].replace("sinh","") + " ";
                         qa_word = qa_word + "sinh "
-                        print(qa_word)
+
                         list.append(tag[0].replace("sinh",""))
                         list.append("sinh")
                     elif ("quê" in tag[0]):
@@ -142,10 +142,10 @@ def extract():
                     else:
                         search_word = search_word + tag[0]+ " ";
                         list.append(tag[0])
-                elif (tag[0][0].isupper()) :
+                elif (tag[0][0].isupper() & (tag[0][0] != "Quê") & (tag[0][0] != "CEO")) :
                     search_word = search_word + tag[0] + " ";
                     list.append(tag[0])
-                elif ( (((tag[1] == 'N') | (tag[1] == 'Np')) & (tag[2] == 'O')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
+                elif ( ((tag[1] == 'N') | (tag[1] == 'Np')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
                     qa_word = qa_word + tag[0] + " "
                     list.append(tag[0])
 
@@ -261,8 +261,8 @@ def extract():
                     list.append(tag[0])
             loc = False
             print(list)
-            for word in str.split(" ") :
-                if(word[0].isupper()):
+            for word in ner(str):
+                if(word[3] in ["B-PER","I-PER","B-LOC","I-LOC"]):
                     loc = True
                     break
             result = {
