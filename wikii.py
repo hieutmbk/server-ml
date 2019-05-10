@@ -3,7 +3,7 @@ from underthesea import ner, word_tokenize
 from pyvi import ViTokenizer,ViPosTagger
 import re
 wikipedia.set_lang("vi")
-sentences = "diện tích tih Sơn La"
+sentences = "nước Đức có thủ đô là gì"
 tokenize = ner(sentences);
 print(tokenize)
 # print(tokenize)
