@@ -26,6 +26,7 @@ filename_tfidf = 'model_classfication/model_1/finalized_tfidftransformer.sav'
 sav_filename_2 = 'model_classfication/model_2/svm_model.sav'
 filename_countvect_2 = 'model_classfication/model_2/finalized_countvectorizer.sav'
 filename_tfidf_2 = 'model_classfication/model_2/finalized_tfidftransformer.sav'
+best_params_2 = 'model_classfication/model_2/best_params.sav'
 
 clf_svm = joblib.load(sav_filename)
 loaded_cvec = joblib.load(filename_countvect)
@@ -35,6 +36,7 @@ params = joblib.load(best_params)
 clf_svm_2 = joblib.load(sav_filename_2)
 loaded_cvec_2 = joblib.load(filename_countvect_2)
 loaded_tfidf_transformer_2 = joblib.load(filename_tfidf_2)
+params_2 = joblib.load(best_params_2)
 pipe_line = Pipeline([
     ("transformer", FeatureTransformer()),
     ("vect", loaded_cvec),
@@ -48,7 +50,7 @@ pipe_line_2 = Pipeline([
     ("tfidf", loaded_tfidf_transformer_2),
     ("clf-svm", clf_svm_2)
 ])
-
+pipe_line_2.set_params(**params_2)
 def word2features(sent, i):
     word = sent[i][0]
     postag = sent[i][1]
