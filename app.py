@@ -18,6 +18,7 @@ PORT = 5000
 
 app = Flask(__name__)
 
+best_params = 'model_classfication/model_1/best_params.sav'
 sav_filename = 'model_classfication/model_1/svm_model.sav'
 filename_countvect = 'model_classfication/model_1/finalized_countvectorizer.sav'
 filename_tfidf = 'model_classfication/model_1/finalized_tfidftransformer.sav'
@@ -29,6 +30,7 @@ filename_tfidf_2 = 'model_classfication/model_2/finalized_tfidftransformer.sav'
 clf_svm = joblib.load(sav_filename)
 loaded_cvec = joblib.load(filename_countvect)
 loaded_tfidf_transformer = joblib.load(filename_tfidf)
+params = joblib.load(best_params)
 
 clf_svm_2 = joblib.load(sav_filename_2)
 loaded_cvec_2 = joblib.load(filename_countvect_2)
@@ -39,7 +41,7 @@ pipe_line = Pipeline([
     ("tfidf", loaded_tfidf_transformer),
     ("clf-svm", clf_svm)
 ])
-
+pipe_line.set_params(**params)
 pipe_line_2 = Pipeline([
     ("transformer", FeatureTransformer()),
     ("vect", loaded_cvec_2),
@@ -118,17 +120,24 @@ def extract():
             ner_tags = []
             list = []
             x = ner(str)
-
+            stopwords = []
+            with open('stopwords.txt', encoding="utf-8") as f1:
+                stopwords.append(f1.read().replace("\n"," "))
+            stopwords = stopwords[0].split(" ")
             for i in x:
-                ner_tags.append((i[0].replace(" ", "_"), i[1]))
+                    if (i[0].replace(" ", "_") not in stopwords):
+                        ner_tags.append((i[0].replace(" ", "_"), i[1]))
             tags = crf.predict([sent2features(ner_tags)])[0]
 
             for i in range(len(ner_tags)):
                 ner_tags[i] = (ner_tags[i][0].replace("_"," "), ner_tags[i][1], tags[i])
-            print(ner(str))
+
+            print(ner_tags)
             for tag in ner_tags:
                 if((tag[2] in ["B-PER","I-PER","B-LOC","I-LOC","B-ORG","I-ORG"])):
+
                     if ("sinh" in tag[0]):
+
                         search_word = search_word + tag[0].replace("sinh","") + " ";
                         qa_word = qa_word + "sinh "
 
@@ -145,13 +154,14 @@ def extract():
                 elif (tag[0][0].isupper() & (tag[0][0] != "Quê") & (tag[0][0] != "CEO")) :
                     search_word = search_word + tag[0] + " ";
                     list.append(tag[0])
-                elif ( ((tag[1] == 'N') | (tag[1] == 'Np')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW')):
+                elif ( ((tag[1] == 'N') | (tag[1] == 'Np')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW') | (tag[1] == 'Z')  ):
                     qa_word = qa_word + tag[0] + " "
                     list.append(tag[0])
 
             search_word.strip()
             search_word=search_word.replace(" sinh","")
-            print(search_word)
+            print(qa_word)
+            print(list)
             qa_word.strip()
             url = ""
             summary = ""
