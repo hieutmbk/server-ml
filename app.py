@@ -153,7 +153,7 @@ def extract():
                     else:
                         search_word = search_word + tag[0]+ " ";
                         list.append(tag[0])
-                elif (tag[0][0].isupper() & (tag[0][0] != "Quê") & (tag[0][0] != "CEO")) :
+                elif (tag[0][0].isupper() & (tag[0] != "Quê") & (tag[0]!= "CEO") & (tag[0] != "GDP")) :
                     search_word = search_word + tag[0] + " ";
                     list.append(tag[0])
                 elif ( ((tag[1] == 'N') | (tag[1] == 'Np')) | ((tag[1] == 'V') & (tag[0] != 'là')) | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW') | (tag[1] == 'Z')  ):
