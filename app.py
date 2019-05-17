@@ -156,7 +156,7 @@ def extract():
                 elif (tag[0][0].isupper() & (tag[0] != "Quê") & (tag[0]!= "CEO") & (tag[0] != "GDP")) :
                     search_word = search_word + tag[0] + " ";
                     list.append(tag[0])
-                elif ( ((tag[1] == 'N') | (tag[1] == 'Np'))  | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'FW') | (tag[1] == 'Z')  ):
+                elif ( ((tag[1] == 'N') | (tag[1] == 'Np'))  | ((tag[1] == 'M') & (tag[2] == 'O')) | (tag[1] == 'A') | (tag[1] == 'V') | (tag[1] == 'FW') | (tag[1] == 'Z')  ):
                     qa_word = qa_word + tag[0] + " "
                     list.append(tag[0])
 
