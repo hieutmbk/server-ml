@@ -1,3 +1,4 @@
+ai
 bị
 bởi
 bao_giờ
@@ -22,6 +23,7 @@ cùng
 cũng
 đã
 đang
+đâu
 đây
 để
 đến_nỗi
