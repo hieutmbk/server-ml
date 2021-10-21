@@ -3,7 +3,7 @@ scipy==1.1.0
 pandas==0.23.0
 scikit-learn==0.20.3
 gunicorn==19.9.0
-Babel==0.9.6
+Babel==2.9.1
 click==6.7
 docutils==0.11
 Flask==0.12.2
